@@ -6,7 +6,8 @@ use serde::de::DeserializeOwned;
 use std::io::Read;
 use validator::{ValidationError, ValidationErrors, Validate};
 
-const LIMIT: u64 = 256; // always use a limit to prevent DoS attacks
+// TODO: Move this to a config file, so that it can easily be updated without changing code
+const LIMIT: u64 = 25600; // always use a limit to prevent DoS attacks
 
 pub fn validate_json_request<T>(req: &Request, data: Data) -> data::Outcome<T, Custom<String>>
     where T: DeserializeOwned 
